@@ -33,15 +33,15 @@ nextcloud/apps/ folder:
 cd [path to your webroot]/nextcloud/apps/
 ```
 ```
-git clone --branch stable14 --single-branch https://github.com/nextcloud/dashboard.git
+git clone --branch tasks_support --single-branch https://github.com/tuxedocomputers/dashboard.git
 ```
 
 Install 3rd party scripts via composer [https://getcomposer.org/](https://getcomposer.org/).
 ```
-cd [path to your webroot]/nextcloud/apps/dashboard
+cd [path to your webroot]/nextcloud/apps/dashboard/
 ```
 ```
-composer install
+composer.phar install
 ```
 
 Open a terminal and change the ownership of the whole dashboard directory to
@@ -56,18 +56,18 @@ Finally, enable the Dashboard App through the admin backend.
 ### Installation per archive download
 
 Download the archive from:
-[https://github.com/nextcloud/dashboard/archive/stable14.zip](https://github.com/nextcloud/dashboard/archive/stable14.zip)
+[https://github.com/tuxedocomputers/dashboard/archive/tasks_support.zip](https://github.com/tuxedocomputers/dashboard/archive/tasks_support.zip)
 
 Open a terminal, unzip the archive into your nextcloud/apps/ folder and
-rename the dashboard-stable14 folder to dashboard: 
+rename the dashboard-tasks_support folder to dashboard: 
 ```
 cd [path to downloaded archive]
 ```
 ```
-unzip stable14.zip -d [path to your webroot]/nextcloud/apps/
+unzip dashboard-tasks_support.zip -d [path to your webroot]/nextcloud/apps/
 ```
 ```
-mv [path to your webroot]/nextcloud/apps/dashboard-stable14 [path to your webroot]/nextcloud/apps/dashboard
+mv [path to your webroot]/nextcloud/apps/dashboard-tasks_support [path to your webroot]/nextcloud/apps/dashboard
 ```
 
 Install 3rd party scripts via composer [https://getcomposer.org/](https://getcomposer.org/).
@@ -75,7 +75,7 @@ Install 3rd party scripts via composer [https://getcomposer.org/](https://getcom
 cd [path to your webroot]/nextcloud/apps/dashboard
 ```
 ```
-composer install
+composer.phar install
 ```
 
 Open a terminal and change the ownership of the whole dashboard directory to
@@ -93,7 +93,7 @@ It is possible to limit access to the Dashboard App to a certain group of users.
 Simply activate the `Limit to groups` checkbox and choose the desired
 user-group in the Apps overview.
 
-Visibility, positioning and proportioning of the 5 main dashboard sections
+Visibility, positioning and proportioning of the 7 main dashboard sections
 are configurable under `Administration` -> `Dashboard`.
 
 The individual Email settings for each user are configurable under `Personal` ->
