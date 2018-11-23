@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Nextcloud - Dashboard App
  *
@@ -54,6 +53,12 @@ class AdminController extends Controller {
 	const ANNOUNCEMENT_POSITION = 'announcement_position';
 	const CALENDAR_POSITION = 'calendar_position';
 	const SHOW_QUOTA = 'show_quota';
+	const SHOW_TASKS_DUE = 'show_tasks_due';
+	const SHOW_WIDE_TASKS_DUE = 'show_wide_tasks_due';
+	const TASKS_DUE_POSITION = 'tasks_due_position';
+	const SHOW_TASKS_NEW = 'show_tasks_new';
+	const SHOW_WIDE_TASKS_NEW = 'show_wide_tasks_new';
+	const TASKS_NEW_POSITION = 'tasks_new_position';
 
 	/** @var DashboardSettingsMapper */
 	private $dashboardSettingsMapper;
@@ -137,7 +142,29 @@ class AdminController extends Controller {
 			static::SHOW_QUOTA             => [
 				'filter'  => FILTER_VALIDATE_BOOLEAN,
 				'flags'   => FILTER_NULL_ON_FAILURE,
-			]
+			],
+			static::SHOW_TASKS_DUE => [
+				'filter' => FILTER_VALIDATE_BOOLEAN,
+				'flags'  => FILTER_NULL_ON_FAILURE,
+			],
+			static::SHOW_WIDE_TASKS_DUE => [
+				'filter' => FILTER_VALIDATE_BOOLEAN,
+				'flags'  => FILTER_NULL_ON_FAILURE,
+			],
+			static::TASKS_DUE_POSITION => [
+				'flags'  => FILTER_NULL_ON_FAILURE,
+			],
+			static::SHOW_TASKS_NEW => [
+				'filter' => FILTER_VALIDATE_BOOLEAN,
+				'flags'  => FILTER_NULL_ON_FAILURE,
+			],
+			static::SHOW_WIDE_TASKS_NEW => [
+				'filter' => FILTER_VALIDATE_BOOLEAN,
+				'flags'  => FILTER_NULL_ON_FAILURE,
+			],
+			static::TASKS_NEW_POSITION => [
+				'flags'  => FILTER_NULL_ON_FAILURE,
+			],
 		];
 		$input = filter_input_array(INPUT_POST, $definition);
 
@@ -228,6 +255,42 @@ class AdminController extends Controller {
 			$dashboardSettings->setKey('show_quota');
 			$dashboardSettings->setValue((int)$input[static::SHOW_QUOTA]);
 			$this->dashboardSettingsMapper->update($dashboardSettings);
+
+			$dashboardSettings = $this->dashboardSettingsMapper->findOne(intval(14));
+			$dashboardSettings->setId(14);
+			$dashboardSettings->setKey('show_tasks_due');
+			$dashboardSettings->setValue((int)$input[static::SHOW_TASKS_DUE]);
+			$this->dashboardSettingsMapper->update($dashboardSettings);
+
+			$dashboardSettings = $this->dashboardSettingsMapper->findOne(intval(15));
+			$dashboardSettings->setId(15);
+			$dashboardSettings->setKey('show_wide_tasks_due');
+			$dashboardSettings->setValue((int)$input[static::SHOW_WIDE_TASKS_DUE]);
+			$this->dashboardSettingsMapper->update($dashboardSettings);
+
+			$dashboardSettings = $this->dashboardSettingsMapper->findOne(intval(16));
+			$dashboardSettings->setId(16);
+			$dashboardSettings->setKey('tasks_due_position');
+			$dashboardSettings->setValue((int)$input[static::TASKS_DUE_POSITION]);
+			$this->dashboardSettingsMapper->update($dashboardSettings);
+
+			$dashboardSettings = $this->dashboardSettingsMapper->findOne(intval(17));
+			$dashboardSettings->setId(17);
+			$dashboardSettings->setKey('show_tasks_new');
+			$dashboardSettings->setValue((int)$input[static::SHOW_TASKS_NEW]);
+			$this->dashboardSettingsMapper->update($dashboardSettings);
+
+			$dashboardSettings = $this->dashboardSettingsMapper->findOne(intval(18));
+			$dashboardSettings->setId(18);
+			$dashboardSettings->setKey('show_wide_tasks_new');
+			$dashboardSettings->setValue((int)$input[static::SHOW_WIDE_TASKS_NEW]);
+			$this->dashboardSettingsMapper->update($dashboardSettings);
+
+			$dashboardSettings = $this->dashboardSettingsMapper->findOne(intval(19));
+			$dashboardSettings->setId(19);
+			$dashboardSettings->setKey('tasks_new_position');
+			$dashboardSettings->setValue((int)$input[static::TASKS_NEW_POSITION]);
+			$this->dashboardSettingsMapper->update($dashboardSettings);
 		}
 
 		return new DataResponse(
@@ -258,6 +321,12 @@ class AdminController extends Controller {
 		$announcementPosition = 3;
 		$calendarPosition = 4;
 		$showQuota = 1;
+		$showTasksDue = 1;
+		$showWideTasksDue = 0;
+		$tasksDuePosition = 5;
+		$showTasksNew = 1;
+		$showWideTasksNew = 0;
+		$tasksNewPosition = 6;
 
 		$limit = 20;
 		$dashboardSettings = $this->dashboardSettingsMapper->findAll($limit);
@@ -303,6 +372,24 @@ class AdminController extends Controller {
 				case 'show_quota':
 					$showQuota = (int)$setting->value;
 					break;
+				case 'show_tasks_due':
+					$showTasksDue = (int)$setting->value;
+					break;
+				case 'show_wide_tasks_due':
+					$showWideTasksDue = (int)$setting->value;
+					break;
+				case 'tasks_due_position':
+					$tasksDuePosition = (int)$setting->value;
+					break;
+				case 'show_tasks_new':
+					$showTasksNew = (int)$setting->value;
+					break;
+				case 'show_wide_tasks_new':
+					$showWideTasksNew = (int)$setting->value;
+					break;
+				case 'tasks_new_position':
+					$tasksNewPosition = (int)$setting->value;
+					break;
 			}
 		}
 		$params = [
@@ -318,7 +405,13 @@ class AdminController extends Controller {
 			static::INBOX_POSITION         => $inboxPosition,
 			static::ANNOUNCEMENT_POSITION  => $announcementPosition,
 			static::CALENDAR_POSITION      => $calendarPosition,
-			static::SHOW_QUOTA             => $showQuota
+			static::SHOW_QUOTA             => $showQuota,
+			static::SHOW_TASKS_DUE         => $showTasksDue,
+			static::SHOW_WIDE_TASKS_DUE    => $showWideTasksDue,
+			static::TASKS_DUE_POSITION     => $tasksDuePosition,
+			static::SHOW_TASKS_NEW         => $showTasksNew,
+			static::SHOW_WIDE_TASKS_NEW    => $showWideTasksNew,
+			static::TASKS_NEW_POSITION     => $tasksNewPosition,
 		];
 
 		return new TemplateResponse($this->appName, 'admin', $params, 'blank');

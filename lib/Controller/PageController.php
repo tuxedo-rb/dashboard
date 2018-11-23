@@ -120,6 +120,12 @@ class PageController extends Controller {
 		$inboxPosition = 2;
 		$announcementPosition = 3;
 		$calendarPosition = 4;
+		$showTasksDue = 1;
+		$showTasksNew = 1;
+		$showWideTasksDue = 0;
+		$showWideTasksNew = 0;
+		$tasksDuePosition = 5;
+		$tasksNewPosition = 6;
 		$limit = 20;
 		$dashboardSettings = $this->dashboardSettingsMapper->findAll($limit);
 		foreach ($dashboardSettings as $setting) {
@@ -164,6 +170,24 @@ class PageController extends Controller {
 				case 'calendar_position':
 					$calendarPosition = (int)$setting->value;
 					break;
+				case 'show_tasks_due':
+					$showTasksDue = (int)$setting->value;
+					break;
+				case 'show_wide_tasks_due':
+					$showWideTasksDue = (int)$setting->value;
+					break;
+				case 'tasks_due_position':
+					$tasksDuePosition = (int)$setting->value;
+					break;
+				case 'show_tasks_new':
+					$showTasksNew = (int)$setting->value;
+					break;
+				case 'show_wide_tasks_new':
+					$showWideTasksNew = (int)$setting->value;
+					break;
+				case 'tasks_new_position':
+					$tasksNewPosition = (int)$setting->value;
+					break;
 			}
 		}
 		$params = [
@@ -183,30 +207,86 @@ class PageController extends Controller {
 			'inbox_position'           => $inboxPosition,
 			'announcement_position'    => $announcementPosition,
 			'calendar_position'        => $calendarPosition,
+			'show_tasks_due'           => $showTasksDue,
+			'show_wide_tasks_due'      => $showWideTasksDue,
+			'tasks_due_position'       => $tasksDuePosition,
+			'show_tasks_new'           => $showTasksNew,
+			'show_wide_tasks_new'      => $showWideTasksNew,
+			'tasks_new_position'       => $tasksNewPosition,
 
 			'default_announcement_expiration_value' => date_create()
 				->add(new DateInterval('P1M'))
 				->format('Y-m-d'),
 
-			'panel_0'                              => $this->getPanel(
-				'panel_0', $this->getPaneltoOrder(
-				1, $activityPosition, $inboxPosition, $announcementPosition, $calendarPosition
-			)
+			'panel_0' => $this->getPanel(
+				'panel_0',
+				$this->getPaneltoOrder(
+					1,
+					$activityPosition,
+					$inboxPosition,
+					$announcementPosition,
+					$calendarPosition,
+					$tasksDuePosition,
+					$tasksNewPosition
+				)
 			),
-			'panel_1'                              => $this->getPanel(
-				'panel_1', $this->getPaneltoOrder(
-				2, $activityPosition, $inboxPosition, $announcementPosition, $calendarPosition
-			)
+			'panel_1' => $this->getPanel(
+				'panel_1',
+				$this->getPaneltoOrder(
+					2,
+					$activityPosition,
+					$inboxPosition,
+					$announcementPosition,
+					$calendarPosition,
+					$tasksDuePosition,
+					$tasksNewPosition
+				)
 			),
-			'panel_2'                              => $this->getPanel(
-				'panel_2', $this->getPaneltoOrder(
-				3, $activityPosition, $inboxPosition, $announcementPosition, $calendarPosition
-			)
+			'panel_2' => $this->getPanel(
+				'panel_2',
+				$this->getPaneltoOrder(
+					3,
+					$activityPosition,
+					$inboxPosition,
+					$announcementPosition,
+					$calendarPosition,
+					$tasksDuePosition,
+					$tasksNewPosition
+				)
 			),
-			'panel_3'                              => $this->getPanel(
-				'panel_3', $this->getPaneltoOrder(
-				4, $activityPosition, $inboxPosition, $announcementPosition, $calendarPosition
-			)
+			'panel_3' => $this->getPanel(
+				'panel_3',
+				$this->getPaneltoOrder(
+					4,
+					$activityPosition,
+					$inboxPosition,
+					$announcementPosition,
+					$calendarPosition,
+					$tasksDuePosition,
+					$tasksNewPosition
+				)
+			),
+			'panel_4' => $this->getPanel(
+				'panel_4', $this->getPaneltoOrder(
+					5,
+					$activityPosition,
+					$inboxPosition,
+					$announcementPosition,
+					$calendarPosition,
+					$tasksDuePosition,
+					$tasksNewPosition
+				)
+			),
+			'panel_5' => $this->getPanel(
+				'panel_5', $this->getPaneltoOrder(
+					6,
+					$activityPosition,
+					$inboxPosition,
+					$announcementPosition,
+					$calendarPosition,
+					$tasksDuePosition,
+					$tasksNewPosition
+				)
 			),
 			'storage_info'                         => [
 				'relative' => $storageInfo['relative'],
@@ -225,7 +305,13 @@ class PageController extends Controller {
 	}
 
 	private function getPaneltoOrder(
-		$order, $activityPosition, $inboxPosition, $announcementPosition, $calendarPosition
+		$order,
+		$activityPosition,
+		$inboxPosition,
+		$announcementPosition,
+		$calendarPosition,
+		$tasksDuePosition,
+		$tasksNewPosition
 	) {
 		if ($order === $activityPosition) {
 			return 'activities';
@@ -239,11 +325,29 @@ class PageController extends Controller {
 		if ($order === $calendarPosition) {
 			return 'calendar';
 		}
+		if ($order === $tasksDuePosition) {
+			return 'tasks_due';
+		}
+		if ($order === $tasksNewPosition) {
+			return 'tasks_new';
+		}
 	}
 
 	private function getPanel($key, $default = '') {
 		$value = $this->dashboardService->getAppValue($key, $default);
-		if (in_array($value, ['activities', 'announcements', 'calendar', 'inbox'])) {
+		if (
+			in_array(
+				$value,
+				[
+					'activities',
+					'announcements',
+					'calendar',
+					'inbox',
+					'tasks_due',
+					'tasks_new'
+				]
+			)
+		) {
 			return $value;
 		} else {
 			return 'blank';

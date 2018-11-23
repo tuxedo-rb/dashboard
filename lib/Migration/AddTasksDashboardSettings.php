@@ -34,11 +34,10 @@ use OCA\Dashboard\Db\DashboardSettingsMapper;
 use OCP\IConfig;
 
 /**
- * writes default settings into table dashboard_settings during app-installation
- * 
- * see also ./dashboard/appinfo/info.xml
+ * Description of AddTasksDashboardSettings
+ * adds new settings entries for tasks sections
  */
-class SetDefaultDashboardSettings implements IRepairStep {
+class AddTasksDashboardSettings implements IRepairStep {
 
 	/** @var DashboardSettings */
 	private $dashboardSettings;
@@ -65,83 +64,17 @@ class SetDefaultDashboardSettings implements IRepairStep {
 	}
 
 	public function getName() {
-		return 'set default Dashboard settings';
+		return 'set default Task section Dashboard settings';
 	}
 
 	/**
 	 * @param IOutput $output
 	 */
 	public function run(IOutput $output) {
-		// enabling the app is not the only one event which triggers install
-		if ($this->config->getAppValue('dashboard', 'setDefaultDashboardSettings') === 'yes') {
-			$output->info('default Dashboard settings already saved');
+		if ($this->config->getAppValue('dashboard', 'addTasksDashboardSettings') === 'yes') {
+			$output->info('default Task section Dashboard settings already saved');
 			return;
 		}
-
-		$this->dashboardSettings->setId(1);
-		$this->dashboardSettings->setKey('show_activity');
-		$this->dashboardSettings->setValue(1);
-		$this->dashboardSettingsMapper->insert($this->dashboardSettings);
-
-		$this->dashboardSettings->setId(2);
-		$this->dashboardSettings->setKey('show_inbox');
-		$this->dashboardSettings->setValue(1);
-		$this->dashboardSettingsMapper->insert($this->dashboardSettings);
-
-		$this->dashboardSettings->setId(3);
-		$this->dashboardSettings->setKey('show_announcement');
-		$this->dashboardSettings->setValue(1);
-		$this->dashboardSettingsMapper->insert($this->dashboardSettings);
-
-		$this->dashboardSettings->setId(4);
-		$this->dashboardSettings->setKey('show_calendar');
-		$this->dashboardSettings->setValue(1);
-		$this->dashboardSettingsMapper->insert($this->dashboardSettings);
-
-		$this->dashboardSettings->setId(5);
-		$this->dashboardSettings->setKey('show_wide_activity');
-		$this->dashboardSettings->setValue(0);
-		$this->dashboardSettingsMapper->insert($this->dashboardSettings);
-
-		$this->dashboardSettings->setId(6);
-		$this->dashboardSettings->setKey('show_wide_inbox');
-		$this->dashboardSettings->setValue(0);
-		$this->dashboardSettingsMapper->insert($this->dashboardSettings);
-
-		$this->dashboardSettings->setId(7);
-		$this->dashboardSettings->setKey('show_wide_announcement');
-		$this->dashboardSettings->setValue(0);
-		$this->dashboardSettingsMapper->insert($this->dashboardSettings);
-
-		$this->dashboardSettings->setId(8);
-		$this->dashboardSettings->setKey('show_wide_calendar');
-		$this->dashboardSettings->setValue(0);
-		$this->dashboardSettingsMapper->insert($this->dashboardSettings);
-
-		$this->dashboardSettings->setId(9);
-		$this->dashboardSettings->setKey('activity_position');
-		$this->dashboardSettings->setValue(1);
-		$this->dashboardSettingsMapper->insert($this->dashboardSettings);
-
-		$this->dashboardSettings->setId(10);
-		$this->dashboardSettings->setKey('inbox_position');
-		$this->dashboardSettings->setValue(2);
-		$this->dashboardSettingsMapper->insert($this->dashboardSettings);
-
-		$this->dashboardSettings->setId(11);
-		$this->dashboardSettings->setKey('announcement_position');
-		$this->dashboardSettings->setValue(3);
-		$this->dashboardSettingsMapper->insert($this->dashboardSettings);
-
-		$this->dashboardSettings->setId(12);
-		$this->dashboardSettings->setKey('calendar_position');
-		$this->dashboardSettings->setValue(4);
-		$this->dashboardSettingsMapper->insert($this->dashboardSettings);
-		
-		$this->dashboardSettings->setId(13);
-		$this->dashboardSettings->setKey('show_quota');
-		$this->dashboardSettings->setValue(1);
-		$this->dashboardSettingsMapper->insert($this->dashboardSettings);
 
 		$this->dashboardSettings->setId(14);
 		$this->dashboardSettings->setKey('show_tasks_due');
@@ -174,9 +107,8 @@ class SetDefaultDashboardSettings implements IRepairStep {
 		$this->dashboardSettingsMapper->insert($this->dashboardSettings);
 
 		$this->config->setAppValue('dashboard', 'addTasksDashboardSettings', 'yes');
-		$this->config->setAppValue('dashboard', 'setDefaultDashboardSettings', 'yes');
 
-		$output->info("initial default Dashboard settings saved");
+		$output->info("initial default Task section Dashboard settings saved");
 	}
 
 }

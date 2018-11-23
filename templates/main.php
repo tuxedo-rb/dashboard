@@ -62,6 +62,8 @@ script('dashboard', 'activities');
 script('dashboard', 'announcements');
 script('dashboard', 'calendar');
 script('dashboard', 'inbox');
+script('dashboard', 'tasks_due');
+script('dashboard', 'tasks_new');
 
 style('dashboard', 'style');
 ?>

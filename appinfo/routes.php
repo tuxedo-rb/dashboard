@@ -69,5 +69,7 @@ return [
 		['name' => 'inbox#index', 'url' => '/inbox', 'verb' => 'GET'],
 		['name' => 'personal#save', 'url' => '/personal', 'verb' => 'POST'],
 		['name' => 'admin#save', 'url' => '/admin', 'verb' => 'POST'],
+		['name' => 'tasks#index_due', 'url' => '/tasks_due', 'verb' => 'GET'],
+		['name' => 'tasks#index_new', 'url' => '/tasks_new', 'verb' => 'GET'],
 	]
 ];

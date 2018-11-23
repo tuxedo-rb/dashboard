@@ -86,6 +86,22 @@
     color: white;
 }
 
+#task-progress {
+    position: relative;
+}
+
+#task-progress div {
+    height: 1.3em;
+}
+
+#due {
+    color: #4271a6;
+}
+
+#overdue {
+    color: #b3312d;
+}
+
 table.dataTable thead .sorting {
     background-image: url("../img/button-up-down.svg");
     background-size: 0.8em;
@@ -111,6 +127,39 @@ table.dataTable thead .sorting_asc {
 
 table.dataTable thead .sorting_asc:hover {
     background-image: url("../img/button-up-dark.svg");
+}
+
+.taskstars {
+    background: url("../../tasks/img/sprites.svg") no-repeat;
+    height: 16px;
+    width: 16px;
+    display: inline-block;
+    transition: opacity 100ms ease 0s;
+    cursor: default;
+}
+
+.icon-task-star {
+    vertical-align: sub;
+    opacity: .5;
+    background-position: 100% 60%;
+}
+
+.icon-task-star-high {
+    vertical-align: sub;
+    opacity: 1;
+    background-position: 100% 80%;
+}
+
+.icon-task-star-medium {
+    vertical-align: sub;
+    opacity: 1;
+    background-position: 20% 100%;
+}
+
+.icon-task-star-low {
+    vertical-align: sub;
+    opacity: 1;
+    background-position: 0 100%;
 }
 
 .myCollapse {

@@ -40,14 +40,18 @@ style('dashboard', 'settings');
     <input name="show_activity" type="hidden" value="0"/>
     <input name="show_announcement" type="hidden" value="0"/>
     <input name="show_calendar" type="hidden" value="0"/>
+    <input name="show_tasks_due" type="hidden" value="0" />
+    <input name="show_tasks_new" type="hidden" value="0" />
     <input name="show_quota" type="hidden" value="0" />
     <input name="show_wide_inbox" type="hidden" value="0"/>
     <input name="show_wide_activity" type="hidden" value="0"/>
     <input name="show_wide_announcement" type="hidden" value="0"/>
     <input name="show_wide_calendar" type="hidden" value="0"/>
+    <input name="show_wide_tasks_due" type="hidden" value="0" />
+    <input name="show_wide_tasks_new" type="hidden" value="0" />
 
-        <table class="grid activitysettings">
-            <thead>
+    <table class="grid activitysettings">
+        <thead>
             <tr>
                 <th class="small dashboard_select_group" data-select-group="show">
                     <?php p($l->t('Show box')); ?>
@@ -60,8 +64,8 @@ style('dashboard', 'settings');
                 </th>
                 <th><span id="dashboard_notifications_msg" class="msg" style="display: none;">save</span></th>
             </tr>
-            </thead>
-            <tbody>
+        </thead>
+        <tbody>
             <tr>
                 <td class="small">
                     <input <?php if ($_['show_activity']): ?>checked="checked"<?php endif; ?> type="checkbox" id="show_activity" name="show_activity" value="1" class="checkbox">
@@ -79,6 +83,8 @@ style('dashboard', 'settings');
                         <option <?php if ($_['activity_position']===2): ?>selected<?php endif; ?>>2</option>
                         <option <?php if ($_['activity_position']===3): ?>selected<?php endif; ?>>3</option>
                         <option <?php if ($_['activity_position']===4): ?>selected<?php endif; ?>>4</option>
+                        <option <?php if ($_['activity_position']===5): ?>selected<?php endif; ?>>5</option>
+                        <option <?php if ($_['activity_position']===6): ?>selected<?php endif; ?>>6</option>
                     </select>
                     <label for="activity_position">
                     </label>
@@ -104,6 +110,8 @@ style('dashboard', 'settings');
                         <option <?php if ($_['inbox_position']===2): ?>selected<?php endif; ?>>2</option>
                         <option <?php if ($_['inbox_position']===3): ?>selected<?php endif; ?>>3</option>
                         <option <?php if ($_['inbox_position']===4): ?>selected<?php endif; ?>>4</option>
+                        <option <?php if ($_['inbox_position']===5): ?>selected<?php endif; ?>>5</option>
+                        <option <?php if ($_['inbox_position']===6): ?>selected<?php endif; ?>>6</option>
                     </select>
                     <label for="inbox_position">
                     </label>
@@ -129,6 +137,8 @@ style('dashboard', 'settings');
                         <option <?php if ($_['announcement_position']===2): ?>selected<?php endif; ?>>2</option>
                         <option <?php if ($_['announcement_position']===3): ?>selected<?php endif; ?>>3</option>
                         <option <?php if ($_['announcement_position']===4): ?>selected<?php endif; ?>>4</option>
+                        <option <?php if ($_['announcement_position']===5): ?>selected<?php endif; ?>>5</option>
+                        <option <?php if ($_['announcement_position']===6): ?>selected<?php endif; ?>>6</option>
                     </select>
                     <label for="announcement_position">
                     </label>
@@ -154,12 +164,68 @@ style('dashboard', 'settings');
                         <option <?php if ($_['calendar_position']===2): ?>selected<?php endif; ?>>2</option>
                         <option <?php if ($_['calendar_position']===3): ?>selected<?php endif; ?>>3</option>
                         <option <?php if ($_['calendar_position']===4): ?>selected<?php endif; ?>>4</option>
+                        <option <?php if ($_['calendar_position']===5): ?>selected<?php endif; ?>>5</option>
+                        <option <?php if ($_['calendar_position']===6): ?>selected<?php endif; ?>>6</option>
                     </select>
                     <label for="calendar_position">
                     </label>
                 </td>
                 <td class="dashboard_select_group" data-select-group="calendar">
                     <?php p($l->t('Calendar')); ?>
+                </td>
+            </tr>
+            <tr>
+                <td class="small">
+                    <input <?php if ($_['show_tasks_due']): ?>checked="checked"<?php endif; ?> type="checkbox" id="show_tasks_due" name="show_tasks_due" value="1" class="checkbox" />
+                    <label for="show_tasks_due">
+                    </label>
+                </td>
+                <td class="small">
+                    <input <?php if ($_['show_wide_tasks_due']): ?>checked="checked"<?php endif; ?> type="checkbox" id="show_wide_tasks_due" name="show_wide_tasks_due" value="1" class="checkbox" />
+                    <label for="show_wide_tasks_due">
+                    </label>
+                </td>
+                <td class="small">
+                    <select name="tasks_due_position" size="1">
+                        <option <?php if ($_['tasks_due_position']===1): ?>selected<?php endif; ?>>1</option>
+                        <option <?php if ($_['tasks_due_position']===2): ?>selected<?php endif; ?>>2</option>
+                        <option <?php if ($_['tasks_due_position']===3): ?>selected<?php endif; ?>>3</option>
+                        <option <?php if ($_['tasks_due_position']===4): ?>selected<?php endif; ?>>4</option>
+                        <option <?php if ($_['tasks_due_position']===5): ?>selected<?php endif; ?>>5</option>
+                        <option <?php if ($_['tasks_due_position']===6): ?>selected<?php endif; ?>>6</option>
+                    </select>
+                    <label for="tasks_due_position">
+                    </label>
+                </td>
+                <td class="dashboard_select_group" data-select-group="tasks_due">
+                    <?php p($l->t('Due tasks')); ?>
+                </td>
+            </tr>
+            <tr>
+                <td class="small">
+                    <input <?php if ($_['show_tasks_new']): ?>checked="checked"<?php endif; ?> type="checkbox" id="show_tasks_new" name="show_tasks_new" value="1" class="checkbox" />
+                    <label for="show_tasks_new">
+                    </label>
+                </td>
+                <td class="small">
+                    <input <?php if ($_['show_wide_tasks_new']): ?>checked="checked"<?php endif; ?> type="checkbox" id="show_wide_tasks_new" name="show_wide_tasks_new" value="1" class="checkbox" />
+                    <label for="show_wide_tasks_new">
+                    </label>
+                </td>
+                <td class="small">
+                    <select name="tasks_new_position" size="1">
+                        <option <?php if ($_['tasks_new_position']===1): ?>selected<?php endif; ?>>1</option>
+                        <option <?php if ($_['tasks_new_position']===2): ?>selected<?php endif; ?>>2</option>
+                        <option <?php if ($_['tasks_new_position']===3): ?>selected<?php endif; ?>>3</option>
+                        <option <?php if ($_['tasks_new_position']===4): ?>selected<?php endif; ?>>4</option>
+                        <option <?php if ($_['tasks_new_position']===5): ?>selected<?php endif; ?>>5</option>
+                        <option <?php if ($_['tasks_new_position']===6): ?>selected<?php endif; ?>>6</option>
+                    </select>
+                    <label for="tasks_new_position">
+                    </label>
+                </td>
+                <td class="dashboard_select_group" data-select-group="tasks_new">
+                    <?php p($l->t('Recently created tasks')); ?>
                 </td>
             </tr>
             <tr>
@@ -174,8 +240,8 @@ style('dashboard', 'settings');
                     <?php p($l->t('Used space')); ?>
                 </td>
             </tr>
-            </tbody>
-        </table>
-        <input type="submit" value="<?php p($l->t('Save')); ?>"/>
+        </tbody>
+    </table>
+    <input type="submit" value="<?php p($l->t('Save')); ?>"/>
 
 </form>

@@ -8,6 +8,7 @@
  * @author regio iT gesellschaft für informationstechnologie mbh
  * @copyright regio iT 2017
  * @license GNU AGPL version 3 or any later version
+ * @contributor tuxedo-rb | TUXEDO Computers GmbH | https://www.tuxedocomputers.com
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -40,5 +41,11 @@
     </option>
     <option value="calendar"<?php if ('calendar' === $_[$_['name']]): ?> selected<?php endif; ?>>
         <?php p($l->t('Next events')); ?>
+    </option>
+    <option value="tasks_due"<?php if ('tasks_due' === $_[$_['name']]): ?> selected<?php endif; ?>>
+        <?php p($l->t('Tasks due')); ?>
+    </option>
+    <option value="tasks_new"<?php if ('tasks_new' === $_[$_['name']]): ?> selected<?php endif; ?>>
+        <?php p($l->t('Recently created tasks')); ?>
     </option>
 </select>

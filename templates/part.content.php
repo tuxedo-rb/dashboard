@@ -37,6 +37,11 @@
     <?php print_unescaped($this->inc("section.{$_['panel_3']}")); ?>
 </div>
 
+<div class="row-fluid" style="border-bottom-color: <?php p($_['theming_color']); ?>;">
+    <?php print_unescaped($this->inc("section.{$_['panel_4']}")); ?>
+    <?php print_unescaped($this->inc("section.{$_['panel_5']}")); ?>
+</div>
+
 <?php if($_['show_quota']===1) : ?>
 <div class="row-fluid" style="border-bottom-color: <?php p($_['theming_color']); ?>;">
     <section class="dashboard-section" style="border-bottom-color: <?php p($_['theming_color']); ?>;">
