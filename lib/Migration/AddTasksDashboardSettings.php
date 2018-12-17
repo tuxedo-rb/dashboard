@@ -79,32 +79,32 @@ class AddTasksDashboardSettings implements IRepairStep {
 		$this->dashboardSettings->setId(14);
 		$this->dashboardSettings->setKey('show_tasks_due');
 		$this->dashboardSettings->setValue(1);
-		$this->dashboardSettingsMapper->insert($this->dashboardSettings);
+		$this->dashboardSettingsMapper->insertOrUpdate($this->dashboardSettings);
 
 		$this->dashboardSettings->setId(15);
 		$this->dashboardSettings->setKey('show_wide_tasks_due');
 		$this->dashboardSettings->setValue(0);
-		$this->dashboardSettingsMapper->insert($this->dashboardSettings);
+		$this->dashboardSettingsMapper->insertOrUpdate($this->dashboardSettings);
 
 		$this->dashboardSettings->setId(16);
 		$this->dashboardSettings->setKey('tasks_due_position');
 		$this->dashboardSettings->setValue(5);
-		$this->dashboardSettingsMapper->insert($this->dashboardSettings);
+		$this->dashboardSettingsMapper->insertOrUpdate($this->dashboardSettings);
 
 		$this->dashboardSettings->setId(17);
 		$this->dashboardSettings->setKey('show_tasks_new');
 		$this->dashboardSettings->setValue(1);
-		$this->dashboardSettingsMapper->insert($this->dashboardSettings);
+		$this->dashboardSettingsMapper->insertOrUpdate($this->dashboardSettings);
 
 		$this->dashboardSettings->setId(18);
 		$this->dashboardSettings->setKey('show_wide_tasks_new');
 		$this->dashboardSettings->setValue(0);
-		$this->dashboardSettingsMapper->insert($this->dashboardSettings);
+		$this->dashboardSettingsMapper->insertOrUpdate($this->dashboardSettings);
 
 		$this->dashboardSettings->setId(19);
 		$this->dashboardSettings->setKey('tasks_new_position');
 		$this->dashboardSettings->setValue(6);
-		$this->dashboardSettingsMapper->insert($this->dashboardSettings);
+		$this->dashboardSettingsMapper->insertOrUpdate($this->dashboardSettings);
 
 		$this->config->setAppValue('dashboard', 'addTasksDashboardSettings', 'yes');
 
