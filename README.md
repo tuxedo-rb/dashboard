@@ -1,7 +1,8 @@
+![](https://raw.githubusercontent.com/tuxedocomputers/dashboard/tasks_support/screenshots/nc-dashboard_tasks-sections.png)
 
 ## Requirements and Dependencies
 
-The Dashboard App is dependent on Activity App, Calendar App and optional on
+The Dashboard App is dependent on Activity App, Calendar App, Tasks App and optional on
 Rainloop App (a click on a displayed email leads to the Rainloop App).
 
 The inbox section of the Dashboard requires the installation of the
