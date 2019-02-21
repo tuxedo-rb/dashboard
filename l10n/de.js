@@ -42,6 +42,13 @@ OC.L10N.register(
     "Uploaded by" : "Hochgeladen von",
     "Uploaded at" : "Hochgeladen am",
     "Message" : "Nachricht",
-    "Received" : "Erhalten"
+    "Received" : "Erhalten",
+    "Tasks due" : "Fällige Aufgaben",
+    "Recently created tasks" : "Kürzlich erstellte Aufgaben",
+    "Task" : "Aufgabe",
+    "Priority" : "Priorität",
+    "Progress" : "Fortschritt",
+    "Due on" : "Fällig am",
+    "Created at" : "Erstellt am"
 },
 "nplurals=2; plural=(n != 1);");
