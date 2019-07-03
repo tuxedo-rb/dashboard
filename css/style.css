@@ -130,36 +130,37 @@ table.dataTable thead .sorting_asc:hover {
 }
 
 .taskstars {
-    background: url("../../tasks/img/sprites.svg") no-repeat;
+    background: url("../../tasks/img/color.svg") no-repeat;
     height: 16px;
     width: 16px;
+    vertical-align: sub;
     display: inline-block;
     transition: opacity 100ms ease 0s;
     cursor: default;
 }
 
 .icon-task-star {
-    vertical-align: sub;
-    opacity: .5;
-    background-position: 100% 60%;
+    background: url("../../tasks/img/bw.svg") no-repeat;
 }
 
 .icon-task-star-high {
-    vertical-align: sub;
     opacity: 1;
-    background-position: 100% 80%;
+    background-position: 66.6666666667% 100%;
 }
 
 .icon-task-star-medium {
-    vertical-align: sub;
     opacity: 1;
-    background-position: 20% 100%;
+    background-position: 100% 50%;
 }
 
 .icon-task-star-low {
-    vertical-align: sub;
     opacity: 1;
-    background-position: 0 100%;
+    background-position: 100% 0;
+}
+
+.icon_task-star-none {
+    opacity: .5;
+    background-position: 25% 100%;
 }
 
 .myCollapse {

@@ -50,7 +50,7 @@
                                 gaga = 10 - row.priority;
                             }
                             var title = 'None';
-                            var star = '';
+                            var star = 'icon-task-star icon_task-star-none';
                             if (gaga > 5) {
                                 star = 'icon-task-star-high';
                                 title = 'High';
@@ -65,7 +65,7 @@
                                 + title
                                 + '">'
                                 + gaga
-                                + ' <span class="taskstars icon-task-star right large reactive '
+                                + ' <span class="taskstars '
                                 + star
                                 + '"></span></div>';
                         }
